@@ -6,19 +6,34 @@
       box-sizing: border-box;
       overflow: hidden;
       background: #eef8f6;
-      border-top: 18px solid #367d7a;
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: Arial, sans-serif;
       color: #111;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #d5d5d5;
     }
 
     .fd-bank-test * {
       box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    .fd-header {
+      flex: 0 0 auto;
+      background: #367d7a;
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
     }
 
     .fd-shell {
-      padding: 24px 32px 20px;
-      height: 100%;
+      padding: 20px 32px;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
     }
 
     .fd-text {
@@ -55,7 +70,6 @@
     }
 
     .fd-qnum {
-      font-family: Arial, sans-serif;
       font-size: 14px;
       color: #367d7a;
       font-weight: 700;
@@ -63,7 +77,7 @@
     }
 
     .fd-question {
-      font-size: 23px;
+      font-size: 20px;           /* уменьшен с 23px на 15% */
       line-height: 1.18;
       font-weight: 700;
       color: #001e62;
@@ -103,7 +117,6 @@
       justify-content: space-between;
       align-items: center;
       margin-top: 16px;
-      font-family: Arial, sans-serif;
     }
 
     .fd-btn {
@@ -137,7 +150,6 @@
 
     .fd-score {
       display: inline-block;
-      font-family: Arial, sans-serif;
       font-size: 14px;
       font-weight: 700;
       color: #367d7a;
@@ -170,7 +182,6 @@
 
     .fd-tag {
       display: inline-block;
-      font-family: Arial, sans-serif;
       font-size: 13px;
       font-weight: 700;
       color: #fff;
@@ -179,6 +190,10 @@
       margin-bottom: 10px;
     }
   </style>
+
+  <div class="fd-header">
+    Пройдите тест на готовность к кредитному анализу
+  </div>
 
   <div class="fd-shell">
     <p class="fd-text" id="fdIntro">
@@ -366,7 +381,7 @@
         if (current >= questions.length) {
           current = 0;
           answers.fill(null);
-          intro.textContent = "Ответьте на 8 вопросов и проверьте, какие слабые места стоит закрыть до кредитного анализа.";
+          intro.textContent = "Ответьте на 8 вопросов и проверьте, какие слабые места стоит закрыть до кредитного анализа";
           renderQuestion();
           return;
         }
