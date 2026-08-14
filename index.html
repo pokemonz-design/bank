@@ -1,0 +1,412 @@
+<div class="fd-bank-test" id="fdBankTest">
+  <style>
+    .fd-bank-test {
+      width: 757px;
+      height: 430px;
+      box-sizing: border-box;
+      overflow: hidden;
+      background: #eef8f6;
+      border-top: 18px solid #367d7a;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #111;
+      position: relative;
+    }
+
+    .fd-bank-test * {
+      box-sizing: border-box;
+    }
+
+    .fd-shell {
+      padding: 24px 32px 20px;
+      height: 100%;
+    }
+
+    .fd-kicker {
+      font-family: Arial, sans-serif;
+      color: #367d7a;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 8px;
+    }
+
+    .fd-title {
+      font-size: 28px;
+      line-height: 1.1;
+      font-weight: 700;
+      margin: 0 0 10px;
+      color: #00205b;
+    }
+
+    .fd-text {
+      font-size: 18px;
+      line-height: 1.35;
+      margin: 0 0 18px;
+      max-width: 650px;
+    }
+
+    .fd-progress {
+      width: 100%;
+      height: 7px;
+      background: #d6ebe8;
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 18px 0 18px;
+    }
+
+    .fd-progress span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: #367d7a;
+      transition: width .25s ease;
+    }
+
+    .fd-card {
+      background: #ffffff;
+      border: 1px solid #b9deda;
+      border-radius: 0;
+      padding: 18px 20px;
+      min-height: 205px;
+      box-shadow: 0 6px 0 rgba(54, 125, 122, .13);
+    }
+
+    .fd-qnum {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #367d7a;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .fd-question {
+      font-size: 23px;
+      line-height: 1.18;
+      font-weight: 700;
+      color: #001e62;
+      margin: 0 0 16px;
+    }
+
+    .fd-options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .fd-option {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border: 1px solid #c9e4e1;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 17px;
+      line-height: 1.25;
+      background: #f8fffd;
+      transition: .15s ease;
+    }
+
+    .fd-option:hover {
+      background: #e8f4f1;
+      border-color: #367d7a;
+    }
+
+    .fd-option input {
+      margin-top: 3px;
+      accent-color: #367d7a;
+    }
+
+    .fd-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      font-family: Arial, sans-serif;
+    }
+
+    .fd-btn {
+      border: none;
+      background: #367d7a;
+      color: #fff;
+      font-weight: 700;
+      padding: 11px 18px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .fd-btn:hover {
+      background: #286865;
+    }
+
+    .fd-btn:disabled {
+      background: #b9deda;
+      cursor: not-allowed;
+    }
+
+    .fd-linkbtn {
+      background: transparent;
+      color: #00205b;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0;
+      font-size: 15px;
+    }
+
+    .fd-score {
+      display: inline-block;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #367d7a;
+    }
+
+    .fd-result-title {
+      font-size: 27px;
+      line-height: 1.1;
+      color: #00205b;
+      margin: 0 0 10px;
+      font-weight: 700;
+    }
+
+    .fd-result-text {
+      font-size: 18px;
+      line-height: 1.32;
+      margin: 0 0 12px;
+    }
+
+    .fd-result-list {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 16px;
+      line-height: 1.28;
+    }
+
+    .fd-result-list li {
+      margin-bottom: 5px;
+    }
+
+    .fd-tag {
+      display: inline-block;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      background: #367d7a;
+      padding: 5px 8px;
+      margin-bottom: 10px;
+    }
+  </style>
+
+  <div class="fd-shell">
+    <div class="fd-kicker">Самодиагностика заявки</div>
+    <h2 class="fd-title">Что насторожит банк?</h2>
+    <p class="fd-text" id="fdIntro">
+      Ответьте на 8 вопросов и проверьте, какие слабые места стоит закрыть до кредитного анализа.
+    </p>
+
+    <div class="fd-progress"><span id="fdProgress"></span></div>
+
+    <div class="fd-card" id="fdCard">
+      <div class="fd-qnum" id="fdQnum"></div>
+      <div class="fd-question" id="fdQuestion"></div>
+      <div class="fd-options" id="fdOptions"></div>
+    </div>
+
+    <div class="fd-nav">
+      <button class="fd-linkbtn" id="fdBack">← Назад</button>
+      <span class="fd-score" id="fdScore"></span>
+      <button class="fd-btn" id="fdNext" disabled>Дальше</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const questions = [
+        {
+          q: "Цель кредита можно объяснить конкретнее, чем «на развитие бизнеса»?",
+          options: [
+            { text: "Да: есть контракт, заказ, оборудование, график оплат или расчет потребности", risk: 0 },
+            { text: "Пока нет: формулировка общая, документы еще собираем", risk: 1 }
+          ],
+          tip: "Уточните цель кредита и источник возврата."
+        },
+        {
+          q: "Есть просроченная кредиторка перед ключевыми поставщиками?",
+          options: [
+            { text: "Нет, либо есть понятный график погашения", risk: 0 },
+            { text: "Да, и она уже давит на оборотку", risk: 1 }
+          ],
+          tip: "Подготовьте график закрытия кредиторки и поясните источник платежей."
+        },
+        {
+          q: "В дебиторке есть суммы старше 180 дней, спорные долги или неподписанные акты?",
+          options: [
+            { text: "Нет, рабочая дебиторка подтверждена документами", risk: 0 },
+            { text: "Да, часть дебиторки зависла или спорная", risk: 1 }
+          ],
+          tip: "Разделите дебиторку на рабочую и проблемную."
+        },
+        {
+          q: "Налоговая нагрузка выглядит ниже, чем банк ожидает по вашему обороту?",
+          options: [
+            { text: "Нет, отклонений нет или есть готовые пояснения", risk: 0 },
+            { text: "Да, но отдельное пояснение еще не готовили", risk: 1 }
+          ],
+          tip: "Подготовьте объяснение по льготам, экспорту, режиму налогообложения или сезонности."
+        },
+        {
+          q: "Компания выступает ответчиком в судебных спорах?",
+          options: [
+            { text: "Нет или есть оценка юристов по сумме и вероятности проигрыша", risk: 0 },
+            { text: "Да, но финансовую оценку риска еще не считали", risk: 1 }
+          ],
+          tip: "Запросите сумму требований, вероятность проигрыша и расчет возможных потерь."
+        },
+        {
+          q: "Публичная репутация совпадает с тем, что вы показываете банку?",
+          options: [
+            { text: "Да: сайт, отзывы и открытые данные не противоречат заявке", risk: 0 },
+            { text: "Есть слабые места: жалобы, старый сайт, частая смена руководства", risk: 1 }
+          ],
+          tip: "Подготовьте позицию по существенным претензиям и публичным рискам."
+        },
+        {
+          q: "Залог уже проверен на ликвидность и юридическую чистоту?",
+          options: [
+            { text: "Да: стоимость, документы и обременения проверены", risk: 0 },
+            { text: "Нет: считаем по балансу или примерной рыночной цене", risk: 1 }
+          ],
+          tip: "Проверьте дисконты, обременения, документы и резервное обеспечение."
+        },
+        {
+          q: "Вы не отдаете банку лишние активы в залог?",
+          options: [
+            { text: "Да: активы разделены на основные, резервные и критичные для бизнеса", risk: 0 },
+            { text: "Пока готовы заложить все, лишь бы одобрили кредит", risk: 1 }
+          ],
+          tip: "Не связывайте имущество, которое понадобится под другие сделки или операционную работу."
+        }
+      ];
+
+      let current = 0;
+      const answers = new Array(questions.length).fill(null);
+
+      const qnum = document.getElementById("fdQnum");
+      const qtext = document.getElementById("fdQuestion");
+      const options = document.getElementById("fdOptions");
+      const next = document.getElementById("fdNext");
+      const back = document.getElementById("fdBack");
+      const score = document.getElementById("fdScore");
+      const progress = document.getElementById("fdProgress");
+      const card = document.getElementById("fdCard");
+      const intro = document.getElementById("fdIntro");
+
+      function renderQuestion() {
+        const item = questions[current];
+        qnum.textContent = "Вопрос " + (current + 1) + " из " + questions.length;
+        qtext.textContent = item.q;
+        options.innerHTML = "";
+
+        item.options.forEach((opt, index) => {
+          const id = "fd_q" + current + "_" + index;
+          const label = document.createElement("label");
+          label.className = "fd-option";
+          label.innerHTML =
+            '<input type="radio" name="fdAnswer" id="' + id + '" value="' + index + '">' +
+            '<span>' + opt.text + '</span>';
+
+          const input = label.querySelector("input");
+          if (answers[current] === index) input.checked = true;
+          input.addEventListener("change", () => {
+            answers[current] = index;
+            next.disabled = false;
+          });
+
+          options.appendChild(label);
+        });
+
+        next.textContent = current === questions.length - 1 ? "Показать результат" : "Дальше";
+        next.disabled = answers[current] === null;
+        back.style.visibility = current === 0 ? "hidden" : "visible";
+        score.textContent = "Риск-флаги: " + getRiskCount();
+        progress.style.width = ((current) / questions.length * 100) + "%";
+      }
+
+      function getRiskCount() {
+        return answers.reduce((sum, answer, i) => {
+          if (answer === null) return sum;
+          return sum + questions[i].options[answer].risk;
+        }, 0);
+      }
+
+      function showResult() {
+        const risk = getRiskCount();
+        progress.style.width = "100%";
+        intro.textContent = "Итог самодиагностики перед кредитным анализом.";
+
+        let title, text, tag;
+        if (risk <= 2) {
+          tag = "Зеленая зона";
+          title = "Заявка выглядит уверенно";
+          text = "Критичных красных флагов мало. Перед подачей проверьте комплект документов и сохраните пояснения по спорным пунктам.";
+        } else if (risk <= 5) {
+          tag = "Желтая зона";
+          title = "Банк задаст вопросы";
+          text = "Слабые места есть. Лучше закрыть их до подачи документов, иначе кредитный анализ затянется.";
+        } else {
+          tag = "Красная зона";
+          title = "Заявку стоит усилить";
+          text = "Банк может снизить лимит, запросить допобеспечение или вернуть документы на доработку. Сначала подготовьте позицию по рискам.";
+        }
+
+        const tips = answers
+          .map((answer, i) => {
+            if (answer !== null && questions[i].options[answer].risk === 1) {
+              return "<li>" + questions[i].tip + "</li>";
+            }
+            return "";
+          })
+          .join("");
+
+        card.innerHTML =
+          '<span class="fd-tag">' + tag + '</span>' +
+          '<h3 class="fd-result-title">' + title + '</h3>' +
+          '<p class="fd-result-text">' + text + '</p>' +
+          (tips ? '<ul class="fd-result-list">' + tips + '</ul>' : '<p class="fd-result-text">Соберите финальную версию заявки и проверьте ковенанты в проекте договора.</p>');
+
+        next.textContent = "Пройти заново";
+        next.disabled = false;
+        back.style.visibility = "hidden";
+        score.textContent = risk + " из 8 риск-флагов";
+        current = questions.length;
+      }
+
+      next.addEventListener("click", () => {
+        if (current >= questions.length) {
+          current = 0;
+          answers.fill(null);
+          intro.textContent = "Ответьте на 8 вопросов и проверьте, какие слабые места стоит закрыть до кредитного анализа.";
+          renderQuestion();
+          return;
+        }
+
+        if (current === questions.length - 1) {
+          showResult();
+        } else {
+          current++;
+          renderQuestion();
+        }
+      });
+
+      back.addEventListener("click", () => {
+        if (current > 0 && current < questions.length) {
+          current--;
+          renderQuestion();
+        }
+      });
+
+      renderQuestion();
+    })();
+  </script>
+</div>
