@@ -23,33 +23,37 @@
       flex: 0 0 auto;
       background: #367d7a;
       color: #fff;
-      padding: 14px 32px;
-      font-size: 20px;
+      padding: 10px 32px;
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: -0.2px;
     }
 
     .fd-shell {
-      padding: 20px 32px;
+      padding: 12px 32px;
       flex: 1;
       min-height: 0;
-      overflow-y: auto;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .fd-text {
-      font-size: 18px;
-      line-height: 1.35;
-      margin: 0 0 18px;
+      font-size: 16px;
+      line-height: 1.3;
+      margin: 0 0 10px;
       max-width: 650px;
+      flex: 0 0 auto;
     }
 
     .fd-progress {
       width: 100%;
-      height: 7px;
+      height: 6px;
       background: #d6ebe8;
       border-radius: 99px;
       overflow: hidden;
-      margin: 18px 0 18px;
+      margin: 10px 0;
+      flex: 0 0 auto;
     }
 
     .fd-progress span {
@@ -64,29 +68,31 @@
       background: #ffffff;
       border: 1px solid #b9deda;
       border-radius: 0;
-      padding: 18px 20px;
-      min-height: 205px;
+      padding: 12px 20px;
       box-shadow: 0 6px 0 rgba(54, 125, 122, .13);
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
     }
 
     .fd-qnum {
-      font-size: 14px;
+      font-size: 13px;
       color: #367d7a;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .fd-question {
-      font-size: 20px;           /* уменьшен с 23px на 15% */
-      line-height: 1.18;
+      font-size: 17px;
+      line-height: 1.2;
       font-weight: 700;
       color: #001e62;
-      margin: 0 0 16px;
+      margin: 0 0 10px;
     }
 
     .fd-options {
       display: grid;
-      gap: 10px;
+      gap: 6px;
     }
 
     .fd-option {
@@ -94,9 +100,9 @@
       gap: 10px;
       align-items: flex-start;
       border: 1px solid #c9e4e1;
-      padding: 10px 12px;
+      padding: 8px 12px;
       cursor: pointer;
-      font-size: 17px;
+      font-size: 15px;
       line-height: 1.25;
       background: #f8fffd;
       transition: .15s ease;
@@ -116,7 +122,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 16px;
+      margin-top: 10px;
+      flex: 0 0 auto;
     }
 
     .fd-btn {
@@ -124,9 +131,9 @@
       background: #367d7a;
       color: #fff;
       font-weight: 700;
-      padding: 11px 18px;
+      padding: 8px 16px;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .fd-btn:hover {
@@ -145,49 +152,49 @@
       font-weight: 700;
       cursor: pointer;
       padding: 0;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .fd-score {
       display: inline-block;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       color: #367d7a;
     }
 
     .fd-result-title {
-      font-size: 27px;
+      font-size: 20px;
       line-height: 1.1;
       color: #00205b;
-      margin: 0 0 10px;
+      margin: 0 0 6px;
       font-weight: 700;
     }
 
     .fd-result-text {
-      font-size: 18px;
-      line-height: 1.32;
-      margin: 0 0 12px;
+      font-size: 15px;
+      line-height: 1.3;
+      margin: 0 0 8px;
     }
 
     .fd-result-list {
       margin: 0;
       padding-left: 20px;
-      font-size: 16px;
-      line-height: 1.28;
+      font-size: 13px;
+      line-height: 1.25;
     }
 
     .fd-result-list li {
-      margin-bottom: 5px;
+      margin-bottom: 2px;
     }
 
     .fd-tag {
       display: inline-block;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: #fff;
       background: #367d7a;
-      padding: 5px 8px;
-      margin-bottom: 10px;
+      padding: 3px 6px;
+      margin-bottom: 6px;
     }
   </style>
 
